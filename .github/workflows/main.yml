@@ -22,7 +22,7 @@ jobs:
           python-version: "3.12"
 
       - name: Install dependencies
-        run: pip install -U yt-dlp pyinstaller
+        run: pip install -U yt-dlp pyinstaller customtkinter pillow
 
       - name: Download FFmpeg
         shell: pwsh
@@ -33,7 +33,7 @@ jobs:
           Copy-Item $exe.FullName ffmpeg.exe
 
       - name: Build exe
-        run: pyinstaller --onefile --windowed --name VidGrab --add-binary "ffmpeg.exe;." --collect-all yt_dlp app.py
+        run: pyinstaller --onefile --windowed --name VidGrab --add-binary "ffmpeg.exe;." --collect-all yt_dlp --collect-all customtkinter app.py
 
       - uses: actions/upload-artifact@v4
         with:
